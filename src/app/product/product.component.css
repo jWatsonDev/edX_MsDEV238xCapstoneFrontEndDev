@@ -1,0 +1,17 @@
+.top-of-page {
+  padding-top: 200px; 
+}
+
+.thumbnail {
+  position: relative;
+}
+
+.thumbnail img {
+  max-width: 200px
+}
+
+.glyphicon-backward {
+  position: absolute;
+  top: 10px; 
+  left: 10px; 
+}

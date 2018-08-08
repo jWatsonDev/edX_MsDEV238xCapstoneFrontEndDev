@@ -1,0 +1,130 @@
+
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+      padding: 0;
+      max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+      float: none;
+      display: block;
+    }
+    .sidebar-nav .navbar li {
+      float: none;
+      display: block;
+    }
+    /* .sidebar-nav .navbar li a {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    } */
+  }
+
+  .thumbnail {
+    width: 30%;
+    float: left;
+    margin: 10px; 
+    height: 375px; 
+  }
+  .thumbnail img {
+    height: 175px; 
+    display: block;
+    margin: 0 auto;
+  }
+
+
+
+
+
+
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    top: 17px;
+    left: 5px;
+  }
+  
+  .switch input {display:none;}
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .side-nav {
+    color: whitesmoke;
+    padding: 10px;
+    border-radius: 3px; 
+  }
+
+  .side-nav ul {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .side-nav li > ul > li {
+    animation-name: side-nav-opacity;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    overflow: hidden;
+  }
+
+  @keyframes side-nav-opacity {
+    from {opacity: 0.1;}
+    to {opacity: 1;}
+}
+
+.thumbnail {
+  position: relative;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}

@@ -1,0 +1,110 @@
+
+
+<div id="top-of-page" class="clearfix">
+  <div class="container">
+    <div *ngIf="!orderInProcess" class="alert alert-success" role="alert">
+      Your order has been placed.
+    </div>
+    <div *ngIf="(itemsInCart.length > 0) && orderInProcess">
+      <h2>Grocery Cart</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itemsInCart; let i = index;">
+            <td>{{ item.name | uppercase }}</td>
+            <td><small>{{ item.description }}</small></td>
+            <td>{{ item.price | currency:"$" }}</td>
+            <td>
+              <strong>{{ getNumOfItems(item) }}</strong> &nbsp; &nbsp; &nbsp;
+              <button (click)="addItemToCart(item)" class="btn btn-sm" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+              <button (click)="subtractItem(item)" class="btn btn-sm" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+            </td>
+            <td>{{ getTotalPrice(item) | currency:"$" }}</td>
+            <td><button class="btn btn-danger" (click)="removeItem(i)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="pull-right">Subtotal: {{ getSubTotal() | currency:"$" }} <br>
+      Tax: {{ (getSubTotal() * 0.0975) | currency:"$" }}<br><br>
+      <strong>Total: {{ ((getSubTotal() * 0.0975) + getSubTotal()) | currency:"$" }}</strong></p>
+    </div>
+    <div *ngIf="!(itemsInCart.length > 0)">
+      <h3>There are not any items in your cart.</h3>
+    </div>
+  </div>
+  <hr>
+  <div *ngIf="(itemsInCart.length > 0) && orderInProcess" class="container">   
+      <h3>Shipping Information</h3>
+      <form id="contact-form">
+    
+        <div class="messages"></div>
+    
+        <div class="controls">
+    
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_name">First Name *</label>
+                        <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_lastname">Last Name *</label>
+                        <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_email">Email *</label>
+                        <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="Phone">Phone *</label>
+                    <input id="Phone" type="text" name="Phone" class="form-control" placeholder="Phone *" required="required">
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <input id="address" type="text" name="address" class="form-control" placeholder="Please enter your shipping address *" required="required">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="state">State *</label>
+                    <input id="state" type="text" name="state" class="form-control" placeholder="State *" required="required">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="zip">Zip *</label>
+                    <input id="zip" type="text" name="zip" class="form-control" placeholder="State *" required="required">
+                  </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <input type="button" (click)="orderNow()" class="btn btn-primary btn-send" value="Order now">
+                </div>
+            </div>
+        </div>
+    
+    </form>
+  </div>
+</div>

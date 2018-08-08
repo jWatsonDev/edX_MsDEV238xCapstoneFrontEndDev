@@ -1,0 +1,24 @@
+<div class="top-of-page container">
+  <div *ngIf="product" class="thumbnail">
+    <a routerLink="../shopping"><button class="btn btn-sm"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button></a>
+    <img [src]="product.imagelink" [alt]="product.name">
+    <div class="caption">
+      <h4>{{ product.name | uppercase }} <span class="pull-right">{{ product.price | currency:"$" }}</span></h4>
+      <p><small>Product rating: {{ product.rating }} of 5</small></p>
+      <p><small>{{ product.description }}</small></p>
+
+      <div *ngIf="!checkItem(product)">
+        <button (click)="addItemToCart(product)" class="btn btn-default" role="button">Add to cart</button>
+      </div>
+      <div *ngIf="checkItem(product)">
+        <button (click)="addItemToCart(product)" class="btn btn-sm" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <button (click)="subtractItem(product)" class="btn btn-sm" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+        {{ getNumOfItems(product) }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!product">
+    You haven't selected a product. Why are you here?
+  </div>
+</div>
